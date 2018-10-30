@@ -23,7 +23,8 @@ module.exports = CookieStorage;
 CookieStorage.prototype.getCookieValue = function (name) {
     var self = this;
     return new Promise(function(resolve, reject) {
-        self.storage.findCookie(CONSTANTS.HOSTNAME, '/', name, function(err, cookie) {
+        // self.storage.findCookie(CONSTANTS.HOSTNAME, '/', name, function(err, cookie) {
+            self.storage.findCookie(CONSTANTS.TLD, '/', name, function(err, cookie) {
             if (err) return reject(err);
             if (!_.isObject(cookie)) return reject(new Exceptions.CookieNotValidError(name));
             resolve(cookie);
@@ -44,7 +45,8 @@ CookieStorage.prototype.putCookie = function (cookie) {
 CookieStorage.prototype.getCookies = function () {
     var self = this;
     return new Promise(function(resolve, reject) {
-        self.storage.findCookies(CONSTANTS.HOSTNAME, '/', function(err, cookies){
+        // self.storage.findCookies(CONSTANTS.HOSTNAME, '/', function(err, cookies){
+        self.storage.findCookies(CONSTANTS.TLD, '/', function(err, cookies){    
             if (err) return reject(err);
             resolve(cookies || []);
         })
@@ -80,7 +82,8 @@ CookieStorage.prototype.getSessionId = function () {
 CookieStorage.prototype.removeCheckpointStep = function () {
     var self = this;
     return new Promise(function(resolve, reject) {
-        self.storage.removeCookie(CONSTANTS.HOSTNAME, '/', 'checkpoint_step', function(err){
+        // self.storage.removeCookie(CONSTANTS.HOSTNAME, '/', 'checkpoint_step', function(err){
+        self.storage.removeCookie(CONSTANTS.TLD, '/', 'checkpoint_step', function(err){
             if (err) return reject(err);
             resolve();
         })

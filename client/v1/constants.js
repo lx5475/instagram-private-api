@@ -103,7 +103,7 @@ const PRIVATE_KEY = {
 
 const TLD = 'instagram.com';
 // const HOSTNAME = 'i.instagram.com';
-const HOSTNAME = 'instagram.com';
+const HOSTNAME = 'i.instagram.com';
 const WEB_HOSTNAME = 'www.instagram.com';
 const HOST = 'https://' + HOSTNAME + '/';
 const WEBHOST = 'https://' + WEB_HOSTNAME + '/';
