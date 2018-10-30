@@ -89,12 +89,17 @@ const WEB_ROUTES = {
     userInfo: '<%= id %>/'
 }
 
-const PRIVATE_KEY = {
-    SIG_KEY: '0443b39a54b05f064a4917a3d1da4d6524a3fb0878eacabf1424515051674daa',
-    SIG_VERSION: '4',
-    APP_VERSION: '10.33.0'
-}
+// const PRIVATE_KEY = {
+//     SIG_KEY: '0443b39a54b05f064a4917a3d1da4d6524a3fb0878eacabf1424515051674daa',
+//     SIG_VERSION: '4',
+//     APP_VERSION: '10.33.0'
+// }
 
+const PRIVATE_KEY = {
+    SIG_KEY: '673581b0ddb792bf47da5f9ca816b613d7996f342723aa06993a3f0552311c7d',
+    SIG_VERSION: '4',
+    APP_VERSION: '42.0.0.19.95'
+}
 
 const TLD = 'instagram.com';
 const HOSTNAME = 'i.instagram.com';
