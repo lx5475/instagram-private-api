@@ -136,6 +136,7 @@ Challenge.resolveHtml = function(checkpointError,defaultMethod){
                 challenge = json.entry_data.Challenge[0];
             }
         }catch(e){
+            if(response.body.indexOf('url=instagram://checkpoint/dismiss')!=-1) throw new Exceptions.NoChallengeRequired;
             console.error('[감지] INVALID RESPONSE resolveHtml = = = = = = = = = ');
             console.error(response.body);
             console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
