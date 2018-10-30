@@ -166,6 +166,31 @@ Challenge.resolveHtml = function(checkpointError,defaultMethod){
             case 'VerifySMSCodeForm':{
                 return new PhoneVerificationChallenge(session, 'phone', checkpointError, json);
             }
+            case 'ReviewLoginForm': {
+                            try {
+                                return new WebRequest(session)
+                                .setMethod('POST')
+                                .setUrl(checkpointError.url)
+                                .setHeaders({
+                                    'User-Agent': iPhoneUserAgentHtml,
+                                    'Referer': checkpointError.url,
+                                    'Content-Type': 'application/x-www-form-urlencoded',
+                                    'X-Instagram-AJAX': 1
+                                })
+                                .setBodyType('form')
+                                .setData({
+                                    "choice": '0'
+                                })
+                                .send({followRedirect: false})
+                                .then(function(response){
+                                    var json = JSON.parse(response.body);
+                                    return 'password_change_required';
+                                });
+                            } catch (err) {
+                                console.log(err);
+                            }
+                            
+                        }
             default: return new NotImplementedChallenge(session, challenge.challengeType, checkpointError, json);
         }
     }
@@ -210,6 +235,9 @@ Challenge.prototype.code = function(code){
             try{
                 var json = JSON.parse(response.body);
             }catch(e){
+                console.error('[감지] INVALID RESPONSE Challenge = = = = = = = = = ');
+                console.error(response.body);
+                console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
                 throw new TypeError('Invalid response. JSON expected');
             }
             if(response.statusCode == 200 && json.status==='ok' && (json.action==='close' || json.location==='instagram://checkpoint/dismiss')) return true;
@@ -269,6 +297,9 @@ PhoneVerificationChallenge.prototype.phone = function(phone){
             try{
                 var json = JSON.parse(response.body);
             }catch(e){
+                console.error('[감지] INVALID RESPONSE PhoneVerificationChallenge = ');
+                console.error(response.body);
+                console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
                 throw new TypeError('Invalid response. JSON expected');
             }
             return new PhoneVerificationChallenge(that.session, 'phone', that.error, json);
