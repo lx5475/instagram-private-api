@@ -67,6 +67,9 @@ Challenge.resolve = function(checkpointError,defaultMethod,skipResetStep){
                 var json = JSON.parse(response.body);
             }catch(e){
                 if(response.body.indexOf('url=instagram://checkpoint/dismiss')!=-1) throw new Exceptions.NoChallengeRequired;
+                console.error('[감지] INVALID RESPONSE resolve = = = = = = = = = ');
+                console.error(response.body);
+                console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
                 throw new TypeError('Invalid response. JSON expected');
             }
             //Using html unlock if native is not supported
@@ -133,6 +136,9 @@ Challenge.resolveHtml = function(checkpointError,defaultMethod){
                 challenge = json.entry_data.Challenge[0];
             }
         }catch(e){
+            console.error('[감지] INVALID RESPONSE resolveHtml = = = = = = = = = ');
+            console.error(response.body);
+            console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
             throw new TypeError('Invalid response. JSON expected');
         }
         if(defaultMethod=='email'){
