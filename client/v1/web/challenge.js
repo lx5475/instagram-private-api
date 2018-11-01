@@ -79,7 +79,9 @@ Challenge.resolve = function(checkpointError,defaultMethod,skipResetStep){
         if(json.status==='ok' && json.action==='close') throw new Exceptions.NoChallengeRequired;
 
         //Using API-version of challenge
+        console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
         console.error(`challenge.js - json: ${JSON.stringify(json)}`);
+        console.error(' = = = = = = = = = = = = = = = = = = = = = = = = = ');
         switch(json.step_name){
             case 'select_verify_method':{
                 return new WebRequest(session)
