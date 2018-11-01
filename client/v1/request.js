@@ -46,7 +46,10 @@ Request.defaultHeaders = {
     'Host': CONSTANTS.HOSTNAME,
     'Accept': '*/*',
     'Accept-Encoding': 'gzip, deflate, sdch',
-    'Connection': 'Close'
+    'Connection': 'Close',
+    // spoof
+    'X_FORWARDED_FOR': '175.214.143.49',
+    'REMOTE_ADDR': '175.214.143.49',
 };
 
 
