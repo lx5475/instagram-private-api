@@ -30,7 +30,7 @@ Media.prototype.parseParams = function (json) {
     hash.webLink = "https://www.instagram.com/p/" + json.code + "/";
     hash.carouselMedia = [];
     if(_.isObject(json.location)) {
-        var location = json.location;
+        var location = _.clone(json.location);
         location.location = Object.create(json.location);
         location.title = location.name;
         location.subtitle = null;
@@ -43,14 +43,14 @@ Media.prototype.parseParams = function (json) {
             duration: json.video_duration
         }
     }
-    if (json.media_type === 8 && _.isArray(json.carousel_media)) { 
+    if (json.media_type === 8 && _.isArray(json.carousel_media)) {
         hash.carouselMedia = _.map(json.carousel_media, function (medium) {
            return new Media(that.session, medium);
         });
     }
     if (_.isObject(json.caption))
         hash.caption = json.caption.text;
-    hash.takenAt = parseInt(json.taken_at) * 1000;
+    hash.takenAt = parseInt(json.taken_at) * 1000;
     if (_.isObject(json.image_versions2)) {
         hash.images = json.image_versions2.candidates;
     } else if (_.isObject(json.carousel_media)) {
@@ -65,14 +65,15 @@ Media.prototype.parseParams = function (json) {
     });
     // backward compability
     this.comments = this.previewComments;
-    this.account = new Account(that.session, json.user);
+    if(_.isPlainObject(json.user))
+      this.account = new Account(that.session, json.user);
     return hash;
 };
 
 
 Media.prototype.getParams = function () {
     return _.extend(this._params, {
-        account: this.account.params,
+        account: this.account ? this.account.params : {},
         comments: _.map(this.comments, 'params'),
         location: this.location ? this.location.params : {},
         carouselMedia:  _.map(this._params.carouselMedia, 'params')
@@ -400,7 +401,7 @@ Media.configureAlbum = function (session, medias, caption, disableComments) {
     caption = caption || '';
     disableComments = disableComments || false;
 
-    Promise.mapSeries(medias, function (media) {
+    return Promise.mapSeries(medias, function (media) {
         if(media.type === 'photo') {
             return Media.configurePhotoAlbum(session, media.uploadId, caption, media.size[0], media.size[1], media.usertags)
         } else if (media.type === 'video') {
