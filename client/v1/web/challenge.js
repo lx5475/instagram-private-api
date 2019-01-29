@@ -57,6 +57,10 @@ Challenge.handleResponse = async function handleChallengeResponse (response, che
               .send({followRedirect: true})
             return this.handleResponse(deltaLoginResponse, checkpointError, defaultMethod)
         default:
+            try {
+                console.error(`json.step_name: ${json.step_name}`);
+                console.error(`json: ${JSON.stringify(json)}`);
+            } catch (e) {};
             return new NotImplementedChallenge(session, json.step_name, checkpointError, json)
     }
 }
