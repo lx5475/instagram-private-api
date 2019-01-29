@@ -25,7 +25,6 @@ MediaCommentsFeed.prototype.get = function () {
     resource[this.cursorType] = this.getCursor();
     this.cursorType === 'minId' ? resource['maxId'] = null : resource['minId'] = null;
 
-    console.log(resource);
     return new Request(that.session)
         .setMethod('GET')
         .setResource('mediaComments', resource)
