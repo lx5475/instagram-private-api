@@ -213,6 +213,7 @@ Session.create = function(device, storage, username, password, proxy) {
 Session.prototype.loginFlow = function() {
     // Right now only requests after closing and re-opening the app are made
     // Later we should also include requests made after a full re-login.
+
     return new Timeline(this).get()
                     .then(() => Relationship.getBootstrapUsers(this))
                     .then(() => new Story(this).get())

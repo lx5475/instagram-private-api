@@ -151,7 +151,7 @@ Relationship.autocompleteUserList = function (session) {
             json.accounts = _.map(json.users, function (account) {
                 return new Account(session, account);
             });
-            json.expires = parseInt(json.expires * 1000);
+            json.expires = parseInt(json.expires * 1000);
             return json;
         })
 };

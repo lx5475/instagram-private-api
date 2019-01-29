@@ -362,7 +362,7 @@ function AccountRegistrationError(message, json) {
     this.json = json;
     if(_.isObject(json) && json.errors && !message) {
         this.message = '';
-        for(var key in json.errors) {
+        for(var key in json.errors) {
             this.message += json.errors[key].join('. ')
         }
     }

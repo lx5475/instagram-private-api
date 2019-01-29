@@ -62,6 +62,7 @@ Challenge.handleResponse = async function handleChallengeResponse (response, che
                 console.error(`json: ${JSON.stringify(json)}`);
             } catch (e) {};
             return new NotImplementedChallenge(session, json.step_name, checkpointError, json)
+            return new NotImplementedChallenge(session, json.step_name, checkpointError, json)
     }
 }
 

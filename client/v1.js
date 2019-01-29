@@ -26,6 +26,7 @@ InstagramV1.Relationship = require('./v1/relationship');
 InstagramV1.Thread = require('./v1/thread');
 InstagramV1.ThreadItem = require('./v1/thread-item');
 InstagramV1.QE = require('./v1/qe');
+InstagramV1.Internal = require('./v1/internal');
 InstagramV1.Upload = require('./v1/upload');
 InstagramV1.discover = require('./v1/discover');
 InstagramV1.Save = require('./v1/save');
@@ -52,6 +53,7 @@ InstagramV1.Feed.MediaComments = require('./v1/feeds/media-comments');
 InstagramV1.Feed.SavedMedia = require('./v1/feeds/saved-media');
 InstagramV1.Feed.StoryTray = require('./v1/feeds/story-tray');
 InstagramV1.Feed.UserStory = require('./v1/feeds/user-story');
+InstagramV1.Feed.StoryViewers = require('./v1/feeds/story-viewers');
 
 InstagramV1.Web = {};
 InstagramV1.Web.Request = require('./v1/web/web-request');
