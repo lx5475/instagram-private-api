@@ -235,6 +235,6 @@ Session.prototype.preLoginFlow = function() {
                 .then(() => Internal.fetchZeroRatingToken(this))
                 .then(() => Internal.setContactPointPrefill(this))
                 .catch(function (error) {
-                    throw new Error(error.message);
+                    throw error;
                 })
 }
