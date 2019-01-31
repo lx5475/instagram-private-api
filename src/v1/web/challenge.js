@@ -210,6 +210,32 @@ Challenge.resolveHtml = function(checkpointError, defaultMethod) {
           checkpointError,
           json,
         );
+      case 'ReviewLoginForm':
+        return new WebRequest(session)
+          .setMethod('POST')
+          .setUrl(checkpointError.url)
+          .setHeaders({
+              'User-Agent': session.device.userAgentWeb(),
+              Referer: checkpointError.url,
+              'Content-Type': 'application/x-www-form-urlencoded',
+              'X-Instagram-AJAX': 1
+          })
+          .setBodyType('form')
+          .setData({
+              "choice": '0'
+          })
+          .send({followRedirect: false})
+          .then(function(response) {
+              var json = JSON.parse(response.body);
+              if (
+                response.statusCode === 200 &&
+                json.status === 'ok' &&
+                (json.action === 'close' ||
+                  json.location === 'instagram://checkpoint/dismiss')
+              ) {
+                return 'passed_review_login';
+              }
+          });
       default:
         return new NotImplementedChallenge(
           session,
