@@ -11,17 +11,18 @@ module.exports = function(session, inSingup) {
         .generateUUID()
         .setData({
             phone_id: Helpers.generateUUID(),
-            in_signup: inSingup ? 'true' : 'false',
-            module: 'discover_people'
+            in_singup: inSingup ? 'true' : 'false',
+            module: 'ayml_recommended_users'
         })
         .send()
         .then(function(json) {
-            var items = _.property('suggested_users.suggestions')(json) || [];
+            var groups = _.first(json.groups || []);
+            var items = groups.items || [];
             return _.map(items, function(item) {
                 return {
                     account: new Account(session, item.user),
                     mediaIds: item.media_ids
-                }
+                }       
             })
         })
 };

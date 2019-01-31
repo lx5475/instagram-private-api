@@ -211,7 +211,7 @@ Thread.approveAll = function (session) {
 };
 
 
-Thread.getById = function (session, id, cursor) {
+Thread.getById = function (session, id) {
     if(_.isEmpty(id))
         throw new Error("`id` property is required!")
     return new Request(session)
@@ -219,7 +219,7 @@ Thread.getById = function (session, id, cursor) {
         .generateUUID()
         .setResource('threadsShow', {
             threadId: id,
-            cursor: cursor
+            cursor: null
         })
         .send()
         .then(function(json) {

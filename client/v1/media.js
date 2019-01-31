@@ -30,7 +30,7 @@ Media.prototype.parseParams = function (json) {
     hash.webLink = "https://www.instagram.com/p/" + json.code + "/";
     hash.carouselMedia = [];
     if(_.isObject(json.location)) {
-        var location = _.clone(json.location);
+        var location = json.location;
         location.location = Object.create(json.location);
         location.title = location.name;
         location.subtitle = null;
@@ -43,7 +43,7 @@ Media.prototype.parseParams = function (json) {
             duration: json.video_duration
         }
     }
-    if (json.media_type === 8 && _.isArray(json.carousel_media)) {
+    if (json.media_type === 8 && _.isArray(json.carousel_media)) { 
         hash.carouselMedia = _.map(json.carousel_media, function (medium) {
            return new Media(that.session, medium);
         });
@@ -65,15 +65,14 @@ Media.prototype.parseParams = function (json) {
     });
     // backward compability
     this.comments = this.previewComments;
-    if(_.isPlainObject(json.user))
-      this.account = new Account(that.session, json.user);
+    this.account = new Account(that.session, json.user);
     return hash;
 };
 
 
 Media.prototype.getParams = function () {
     return _.extend(this._params, {
-        account: this.account ? this.account.params : {},
+        account: this.account.params,
         comments: _.map(this.comments, 'params'),
         location: this.location ? this.location.params : {},
         carouselMedia:  _.map(this._params.carouselMedia, 'params')
@@ -401,7 +400,7 @@ Media.configureAlbum = function (session, medias, caption, disableComments) {
     caption = caption || '';
     disableComments = disableComments || false;
 
-    return Promise.mapSeries(medias, function (media) {
+    Promise.mapSeries(medias, function (media) {
         if(media.type === 'photo') {
             return Media.configurePhotoAlbum(session, media.uploadId, caption, media.size[0], media.size[1], media.usertags)
         } else if (media.type === 'video') {
