@@ -1,29 +1,54 @@
 {
-  "name": "instagram-private-api",
-  "description": "Instagram private API wrapper for full access to instagram",
-  "version": "0.8.0",
-  "main": "src/index.js",
-  "files": [
-    "src"
-  ],
-  "license": "MIT",
-  "engines": {
-    "node": "8.0.0"
+  "_from": "github:lx5475/instagram-private-api#master",
+  "_id": "instagram-private-api@0.8.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/instagram-private-api",
+  "_phantomChildren": {
+    "aws-sign2": "0.7.0",
+    "caseless": "0.12.0",
+    "combined-stream": "1.0.6",
+    "fast-json-stable-stringify": "2.0.0",
+    "forever-agent": "0.6.1",
+    "form-data": "2.3.2",
+    "har-schema": "2.0.0",
+    "http-signature": "1.2.0",
+    "is-typedarray": "1.0.0",
+    "isstream": "0.1.2",
+    "json-stringify-safe": "5.0.1",
+    "performance-now": "2.1.0",
+    "psl": "1.1.31",
+    "punycode": "1.4.1",
+    "request-promise-core": "1.1.1",
+    "sprintf-js": "1.1.0",
+    "stealthy-require": "1.1.1",
+    "tough-cookie": "2.3.4",
+    "tunnel-agent": "0.6.0",
+    "uri-js": "4.2.2",
+    "util-deprecate": "1.0.2"
   },
+  "_requested": {
+    "type": "git",
+    "raw": "instagram-private-api@github:lx5475/instagram-private-api#master",
+    "name": "instagram-private-api",
+    "escapedName": "instagram-private-api",
+    "rawSpec": "github:lx5475/instagram-private-api#master",
+    "saveSpec": "github:lx5475/instagram-private-api#master",
+    "fetchSpec": null,
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "github:lx5475/instagram-private-api#85f1f5abcabc5ea466b687f4fe1c0d236e6764cf",
+  "_spec": "instagram-private-api@github:lx5475/instagram-private-api#master",
+  "_where": "/home/ubuntu/workspace",
   "bugs": {
     "url": "https://github.com/huttarichard/instagram-private-api/issues",
     "email": "huttarichard@gmail.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/huttarichard/instagram-private-api.git"
-  },
-  "homepage": "https://github.com/huttarichard/instagram-private-api",
-  "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "prepare": "npm run build",
-    "test": "./node_modules/mocha/bin/mocha --inline-diffs --timeout 1000000 tests/run.js"
-  },
+  "bundleDependencies": false,
   "dependencies": {
     "@types/chance": "^1.0.1",
     "@types/lodash": "^4.14.120",
@@ -46,6 +71,8 @@
     "underscore.string": "^3.3.5",
     "valid-url": "^1.0.9"
   },
+  "deprecated": false,
+  "description": "Instagram private API wrapper for full access to instagram",
   "devDependencies": {
     "dotenv": "^6.2.0",
     "faker": "^3.1.0",
@@ -62,5 +89,41 @@
     "tmp": "0.0.28",
     "ts-node": "^8.0.2",
     "typescript": "^3.2.4"
-  }
+  },
+  "engines": {
+    "node": "8.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/huttarichard/instagram-private-api",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "instagram-private-api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huttarichard/instagram-private-api.git"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "test": "./node_modules/mocha/bin/mocha --inline-diffs --timeout 1000000 tests/run.js"
+  },
+  "version": "0.8.0",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "8.0.0"
+      },
+      "pkgid": "instagram-private-api@0.8.0"
+    },
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": "8.0.0"
+      },
+      "pkgid": "instagram-private-api@0.8.0"
+    }
+  ]
 }
