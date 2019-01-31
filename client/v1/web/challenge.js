@@ -199,7 +199,6 @@ Challenge.resolveHtml = function(checkpointError,defaultMethod){
                             } catch (err) {
                                 console.log(err);
                             }
-                            
                         }
             default: return new NotImplementedChallenge(session, challenge.challengeType, checkpointError, json);
         }
