@@ -103,13 +103,6 @@ const WEB_ROUTES = {
     userInfo: '<%= id %>/'
 }
 
-const PRIVATE_KEY = {
-    SIG_KEY: 'ac5f26ee05af3e40a81b94b78d762dc8287bcdd8254fe86d0971b2aded8884a4',
-    SIG_VERSION: '4',
-    APP_VERSION: '64.0.0.14.96'
-}
-
-
 const TLD = 'instagram.com';
 const HOSTNAME = 'i.instagram.com';
 const WEB_HOSTNAME = 'www.instagram.com';
@@ -121,6 +114,25 @@ const HEADERS = {
     X_IG_Connection_Type: 'WIFI',
     X_IG_Capabilities: '3brTPw=='
 }
+
+// const PRIVATE_KEY = {
+//     SIG_KEY: '0443b39a54b05f064a4917a3d1da4d6524a3fb0878eacabf1424515051674daa',
+//     SIG_VERSION: '4',
+//     APP_VERSION: '10.33.0'
+// }
+
+const PRIVATE_KEY = {
+    SIG_KEY: '673581b0ddb792bf47da5f9ca816b613d7996f342723aa06993a3f0552311c7d',
+    SIG_VERSION: '4',
+    APP_VERSION: '42.0.0.19.95'
+}
+
+const TLD = 'instagram.com';
+const HOSTNAME = 'i.instagram.com';
+const WEB_HOSTNAME = 'www.instagram.com';
+const HOST = 'https://' + HOSTNAME + '/';
+const WEBHOST = 'https://' + WEB_HOSTNAME + '/';
+
 
 module.exports = {
     ROUTES: ROUTES,
@@ -134,6 +146,5 @@ module.exports = {
     API_ENDPOINT: HOST + 'api/v1/',
     EXPERIMENTS: EXPERIMENTS,
     PRIVATE_KEY: PRIVATE_KEY,
-    instagramAgentTemplate: _.template('Instagram <%= version %> Android (<%= agent %>)'),
-    instagramAgentWebTemplate: _.template('Mozilla/5.0 (Linux; Android <%= release %>; <%= model %> Build/<%= build %>; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/70.0.3538.110 Mobile Safari/537.36 <%= instagramAgent %>')
+    instagramAgentTemplate: _.template('Instagram <%= version %> Android (<%= agent %>)')
 }
