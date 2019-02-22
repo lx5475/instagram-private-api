@@ -8,6 +8,10 @@ var Exceptions = require('../exceptions');
 
 var SHARED_JSON_REGEXP = /window._sharedData = (.*);<\/script>/i;
 
+var iPhoneUserAgent = 'Instagram 19.0.0.27.91 (iPhone6,1; iPhone OS 9_3_1; en_US; en; scale=2.00; gamut=normal; 640x1136) AppleWebKit/420+';
+var iPhoneUserAgentHtml = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13E238 Instagram 10.28.0 (iPhone6,1; iPhone OS 9_3_1; en_US; en; scale=2.00; gamut=normal; 640x1136)';
+
+
 var Challenge = function(session, type, error, json) {
   this._json = json;
   this._session = session;
@@ -44,8 +48,11 @@ Challenge.handleResponse = async function handleChallengeResponse(
       const selectResponse = await new WebRequest(session)
         .setMethod('POST')
         .setUrl(apiChallengeUrl)
+        .setHeaders({
+          'User-Agent': iPhoneUserAgent  
+        })
         .setData({
-          choice: json.step_data.choice,
+          "choice": defaultMethod == 'email' ? 1 : 0,
         })
         .send({ followRedirect: true });
       return this.handleResponse(
@@ -73,6 +80,9 @@ Challenge.handleResponse = async function handleChallengeResponse(
       const deltaLoginResponse = await new WebRequest(session)
         .setMethod('POST')
         .setUrl(apiChallengeUrl)
+        .setHeaders({
+          'User-Agent': iPhoneUserAgent  
+        })
         .setData({
           choice: 0, // 0 - It's was me // 1 - Not me, change password
         })
@@ -126,6 +136,9 @@ Challenge.resolve = async function(
           'https://i.instagram.com/api/v1' +
             checkpointError.json.challenge.api_path,
         )
+        .setHeaders({
+          'User-Agent': iPhoneUserAgent  
+        })
         .send({ followRedirect: true });
     // dirty hack for handleResponse()
     return {
@@ -252,6 +265,9 @@ Challenge.reset = function(checkpointError) {
   return new Request(session)
     .setMethod('POST')
     .setBodyType('form')
+    .setHeaders({
+      'User-Agent': iPhoneUserAgent  
+    })
     .setUrl(checkpointError.apiUrl.replace('/challenge/', '/challenge/reset/'))
     .signPayload()
     .send({ followRedirect: true })
@@ -265,6 +281,9 @@ Challenge.prototype.code = function(code) {
   return new WebRequest(that.session)
     .setMethod('POST')
     .setUrl(that.apiUrl)
+    .setHeaders({
+      'User-Agent': iPhoneUserAgent  
+    })
     .setBodyType('form')
     .setData({
       security_code: code,
@@ -349,6 +368,9 @@ PhoneVerificationChallenge.prototype.phone = function(phone) {
     .setMethod('POST')
     .setUrl(that.apiUrl)
     .setBodyType('form')
+    .setHeaders({
+      'User-Agent': iPhoneUserAgent  
+    })
     .setData({
       phone_number: _phone,
     })
