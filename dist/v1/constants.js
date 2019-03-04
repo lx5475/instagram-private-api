@@ -114,6 +114,7 @@ const ROUTES = {
   unsave: 'media/<%= id %>/unsave/',
   userStory: 'feed/reels_media/',
   storyTray: 'feed/reels_tray/',
+  consent: 'consent/existing_user_flow/',
 };
 
 const WEB_ROUTES = {
