@@ -1,18 +1,12 @@
-var util = require('util');
-var _ = require('lodash');
-var Resource = require('./resource');
-
-function Placeholder(session, params) {
-  Resource.apply(this, arguments);
+const Resource = require('./resource');
+class Placeholder extends Resource {
+    parseParams(json) {
+        const hash = {};
+        hash.is_linked = json.is_linked;
+        hash.title = json.title;
+        hash.message = json.message;
+        return hash;
+    }
 }
-
-util.inherits(Placeholder, Resource);
 module.exports = Placeholder;
-
-Placeholder.prototype.parseParams = function(json) {
-  var hash = {};
-  hash.is_linked = json.is_linked;
-  hash.title = json.title;
-  hash.message = json.message;
-  return hash;
-};
+//# sourceMappingURL=placeholder.js.map

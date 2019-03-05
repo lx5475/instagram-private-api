@@ -1,27 +1,25 @@
-var Request = require('./request');
-var Helpers = require('../helpers');
-var _ = require('lodash');
-var Media = require('./media');
-var Account = require('./account');
-
-module.exports = function(session, inSingup) {
-  return new Request(session)
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const class_transformer_1 = require("class-transformer");
+const user_1 = require("../models/user");
+const request_1 = require("../core/request");
+const helpers_1 = require("../helpers");
+const _ = require('lodash');
+module.exports = (session, inSingup) => new request_1.Request(session)
     .setMethod('POST')
     .setResource('discoverAyml')
     .generateUUID()
     .setData({
-      phone_id: Helpers.generateUUID(),
-      in_signup: inSingup ? 'true' : 'false',
-      module: 'discover_people',
-    })
+    phone_id: helpers_1.Helpers.generateUUID(),
+    in_signup: inSingup ? 'true' : 'false',
+    module: 'discover_people',
+})
     .send()
-    .then(function(json) {
-      var items = _.property('suggested_users.suggestions')(json) || [];
-      return _.map(items, function(item) {
-        return {
-          account: new Account(session, item.user),
-          mediaIds: item.media_ids,
-        };
-      });
-    });
-};
+    .then(json => {
+    const items = _.property('suggested_users.suggestions')(json) || [];
+    return _.map(items, item => ({
+        account: class_transformer_1.plainToClass(user_1.User, item.user),
+        mediaIds: item.media_ids,
+    }));
+});
+//# sourceMappingURL=discover.js.map

@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var USERNAMETOFIND;
-var COMMENTTOFIND;
+let USERNAMETOFIND;
+let COMMENTTOFIND;
 const Client = require('./v1');
 const path = require('path');
 const { urlSegmentToInstagramId } = require('instagram-id-to-url-segment');
@@ -29,7 +29,7 @@ function main(usernameToFind, commentToFind, postUrl) {
         else
             return reject(new Error('Not a valid uri'));
         MediaComments = new Client.Feed.MediaComments(session, mediaId);
-        loop(function (id) {
+        loop(id => {
             if (id instanceof Error)
                 reject(id);
             else
@@ -43,7 +43,7 @@ function loop(cb) {
         if (!Comments) {
             cb(new Error('Could not find desired comment'));
         }
-        var result = process(Comments);
+        const result = process(Comments);
         if (result) {
             return cb(result);
         }
