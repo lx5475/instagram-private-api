@@ -94,7 +94,6 @@ exports.ROUTES = {
     unsave: 'media/<%= id %>/unsave/',
     userStory: 'feed/reels_media/',
     storyTray: 'feed/reels_tray/',
-    consent: 'consent/existing_user_flow/',
 };
 exports.WEB_ROUTES = {
     challengeReset: 'challenge/reset/',
