@@ -4,10 +4,10 @@ exports.EXPERIMENTS = require("./experiments.json");
 exports.LOGIN_EXPERIMENTS = require("./login-experiments.json");
 exports.SUPPORTED_CAPABILITIES = require("./supported-capabilities.json");
 exports.APP_CREDENTIALS = {
-    SIG_KEY: '19ce5f445dbfd9d29c59dc2a78c616a7fc090a8e018b9267bc4240a30244c53b',
+    SIG_KEY: '937463b5272b5d60e9d20f0f8d7d192193dd95095a3ad43725d494300a5ea5fc',
     SIG_VERSION: '4',
-    VERSION: '76.0.0.15.395',
-    VERSION_CODE: '138226743',
+    VERSION: '85.0.0.21.100',
+    VERSION_CODE: '146536611',
     FB_ANALYTICS_APPLICATION_ID: '567067343352427',
     LANGUAGE: 'en_US',
 };
