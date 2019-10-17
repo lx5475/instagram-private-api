@@ -4,12 +4,13 @@ exports.EXPERIMENTS = require("./experiments.json");
 exports.LOGIN_EXPERIMENTS = require("./login-experiments.json");
 exports.SUPPORTED_CAPABILITIES = require("./supported-capabilities.json");
 exports.APP_CREDENTIALS = {
-    SIG_KEY: 'e0767f8a7ae9f6c1f9d3674be35d96117f0589960bf3dbd2921f020b33ca4b9f',
+    SIG_KEY: 'c36436a942ea1dbb40d7f2d7d45280a620d991ce8c62fb4ce600f0a048c32c11',
     SIG_VERSION: '4',
-    VERSION: '100.0.0.17.129',
-    VERSION_CODE: '161478673',
+    VERSION: '107.0.0.27.121',
+    VERSION_CODE: '168361634',
     FB_ANALYTICS_APPLICATION_ID: '567067343352427',
     LANGUAGE: 'en_US',
+    BREADCRUMB_KEY: 'iN4$aGr0m'
 };
 exports.TLD = 'instagram.com';
 exports.HOSTNAME = 'i.instagram.com';
@@ -19,6 +20,6 @@ exports.WEBHOST = `https://${exports.WEB_HOSTNAME}/`;
 exports.API_ENDPOINT = `${exports.HOST}api/v1/`;
 exports.HEADERS = {
     X_IG_Connection_Type: 'WIFI',
-    X_IG_Capabilities: '3brTPw==',
+    X_IG_Capabilities: '3brTvw==',
 };
 //# sourceMappingURL=constants.js.map
